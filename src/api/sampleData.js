@@ -3,8 +3,8 @@
 
 export const sampleData = {
   gyerekek: [
-    { id: 'bence', nev: 'Bence', avatar: '🦁', tema: 'auto', sorrend: 1, aktiv: 'igen' },
-    { id: 'mate', nev: 'Máté', avatar: '🐻', tema: 'dino', sorrend: 2, aktiv: 'igen' },
+    { id: 'bandika', nev: 'Bandika', avatar: '👑', tema: 'auto', sorrend: 1, aktiv: 'igen' },
+    { id: 'anya', nev: 'Anya', avatar: '🪳', tema: 'dino', sorrend: 2, aktiv: 'igen' },
   ],
   listak: [
     { id: 'reggel', nev: 'Reggel', tipus: 'napszak', kezdes: '04:00', vege: '11:00', napok: 'minden', kinek: '', ikon: '🌞', tema: '', sorrend: 1, aktiv: 'igen' },
@@ -21,7 +21,7 @@ export const sampleData = {
     { id: 'r5', lista_id: 'reggel', sorrend: 5, cim: 'Öltözés', kep: '', emoji: '👕', napok: 'minden', kinek: '', felolvasas: 'Öltözzünk fel!', hang: '', aktiv: 'igen' },
 
     { id: 'd1', lista_id: 'delutan', sorrend: 1, cim: 'Ebéd', kep: '', emoji: '🍽️', napok: 'hétvége', kinek: '', felolvasas: '', hang: '', aktiv: 'igen' },
-    { id: 'd2', lista_id: 'delutan', sorrend: 2, cim: 'Csendes pihenő', kep: '', emoji: '😴', napok: 'hétvége', kinek: 'bence', felolvasas: 'Egy kis pihenő jön.', hang: '', aktiv: 'igen' },
+    { id: 'd2', lista_id: 'delutan', sorrend: 2, cim: 'Csendes pihenő', kep: '', emoji: '😴', napok: 'hétvége', kinek: 'bandika', felolvasas: 'Egy kis pihenő jön.', hang: '', aktiv: 'igen' },
     { id: 'd3', lista_id: 'delutan', sorrend: 3, cim: 'Uzsonna', kep: '', emoji: '🍎', napok: 'minden', kinek: '', felolvasas: '', hang: '', aktiv: 'igen' },
     { id: 'd4', lista_id: 'delutan', sorrend: 4, cim: 'Játékok elpakolása', kep: '', emoji: '🧸', napok: 'minden', kinek: '', felolvasas: 'Pakoljuk el a játékokat!', hang: '', aktiv: 'igen' },
 

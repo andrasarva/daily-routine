@@ -123,7 +123,8 @@ if (mode === 'test') {
   assert.equal(r.data.listak.length, 5);
   assert.equal(r.data.feladatok.length, 22);
   assert.equal(r.data.listak[0].kezdes, '04:00');
-  assert.equal(r.data.gyerekek[1].nev, 'Máté');
+  assert.equal(r.data.gyerekek[1].nev, 'Anya');
+  assert.equal(r.data.gyerekek[1].avatar, '🪳');
   assert.deepEqual(r.data.beallitasok, { nap_kezdete: '4', hangeffektek: 'igen', felolvasas_sebesseg: '0.9' });
   assert.deepEqual(r.elvegzett, []);
 
@@ -138,7 +139,7 @@ if (mode === 'test') {
 
   // Műveletek
   const post = (body) => call(ctx, 'doPost', { postData: { contents: JSON.stringify({ code, ...body }) } });
-  const op = (o, datum, feladat_id, gyerek_id = 'bence') => ({ op: o, datum, gyerek_id, lista_id: 'reggel', feladat_id, idopont: '2026-10-09T05:00:00.000Z' });
+  const op = (o, datum, feladat_id, gyerek_id = 'bandika') => ({ op: o, datum, gyerek_id, lista_id: 'reggel', feladat_id, idopont: '2026-10-09T05:00:00.000Z' });
   r = post({ action: 'ops', ops: [op('complete', '2026-10-09', 'r1'), op('complete', '2026-10-09', 'r2'), op('complete', '2026-10-09', 'r1'), op('complete', '2026-10-01', 'r1')] });
   assert.deepEqual(r, { ok: true, feldolgozva: 4 });
   r = call(ctx, 'doGet', { parameter: { action: 'data', code, since: '2026-10-05' } });
@@ -146,7 +147,7 @@ if (mode === 'test') {
   assert.equal(r.elvegzett[0].idopont, '2026-10-09T05:00:00.000Z');
 
   // Visszavonás ékezet/kisbetű függetlenül; a többi sor marad
-  r = post({ action: 'ops', ops: [op('undo', '2026-10-09', 'R1', 'BENCE'), { op: 'complete', datum: 'tegnap', gyerek_id: 'x', feladat_id: 'y' }] });
+  r = post({ action: 'ops', ops: [op('undo', '2026-10-09', 'R1', 'BANDIKA'), { op: 'complete', datum: 'tegnap', gyerek_id: 'x', feladat_id: 'y' }] });
   assert.equal(r.ok, true);
   r = call(ctx, 'doGet', { parameter: { action: 'data', code } });
   assert.deepEqual(r.elvegzett.map((e) => e.feladat_id + '@' + e.datum).sort(), ['r1@2026-10-01', 'r2@2026-10-09']);

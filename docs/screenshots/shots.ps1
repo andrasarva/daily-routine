@@ -4,10 +4,10 @@ New-Item -ItemType Directory -Force $Out | Out-Null
 $routes = @{
   'setup'    = 'http://localhost:4173/'
   'picker'   = 'http://localhost:4173/?demo#/'
-  'home'     = 'http://localhost:4173/?demo#/c/bence'
-  'list'     = 'http://localhost:4173/?demo#/c/bence/l/reggel'
-  'listdino' = 'http://localhost:4173/?demo#/c/mate/l/este'
-  'stickers' = 'http://localhost:4173/?demo#/c/bence/matricak'
+  'home'     = 'http://localhost:4173/?demo#/c/bandika'
+  'list'     = 'http://localhost:4173/?demo#/c/bandika/l/reggel'
+  'listdino' = 'http://localhost:4173/?demo#/c/anya/l/este'
+  'stickers' = 'http://localhost:4173/?demo#/c/bandika/matricak'
 }
 foreach ($k in $routes.Keys) {
   $prof = Join-Path $env:TEMP ("nr-prof-" + $k + "-" + [guid]::NewGuid())
