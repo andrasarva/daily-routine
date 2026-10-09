@@ -33,8 +33,11 @@ export function ListView(childId, listId) {
     btn.disabled = true;
     cardEl.classList.add('flipping');
     sfx(theme.sound);
-    const willComplete = prog.doneCount + 1 === total;
     setTimeout(() => {
+      // Csak most számoljuk: közben egy másik kártya is elkészülhetett (gyors dupla koppintás)
+      const remaining = tasks.filter((t) => !store.isDone(child.id, t.id));
+      if (!remaining.includes(task)) return;
+      const willComplete = remaining.length === 1;
       if (willComplete) celebrating = key;
       store.complete(child, list, task);
       if (willComplete) {
@@ -53,7 +56,8 @@ export function ListView(childId, listId) {
     const say = () => speak(t.felolvasas || t.cim, audioUrl(t.hang));
     const card = h(`div.task-card${isDone ? '.done' : ''}`, { style: { animationDelay: `${i * 0.08}s` } });
     const btn = h('button.done-btn', { onclick: () => markDone(t, card, btn) }, '✔ Kész!');
-    card.append(
+    // A natív append a null-t "null" szövegként írná ki, ezért kiszűrjük
+    card.append(...[
       h('button.task-pic', { onclick: () => { sfx('pop'); say(); card.classList.remove('wiggle'); void card.offsetWidth; card.classList.add('wiggle'); } },
         pic(t.kep || t.emoji, t.emoji || '⭐', 'pic'),
         h('span.speaker', '🔈')
@@ -62,8 +66,8 @@ export function ListView(childId, listId) {
       isDone ? h('div.task-sticker', theme.stickers[i % theme.stickers.length]) : btn,
       isDone && app.parent
         ? h('button.undo-btn', { onclick: () => { celebrating = ''; store.undo(child, t); } }, '↩️ Visszavonás')
-        : null
-    );
+        : null,
+    ].filter(Boolean));
     return card;
   });
 

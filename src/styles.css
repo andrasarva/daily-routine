@@ -98,6 +98,7 @@ button {
 
 .view {
   position: relative;
+  z-index: 1; /* a body::before háttérdíszek fölött */
   display: flex;
   flex-direction: column;
   height: 100vh;
