@@ -43,8 +43,10 @@ function render() {
     if (root.querySelector('.setup')) return; // ne töröljük a félig kitöltött űrlapot
     view = SetupView();
   } else if (!store.data) {
+    const err = store.status.lastError;
     view = h('div.view.loading', h('div.bounce.big', '🦖'), h('p', 'Betöltés…'),
-      store.status.lastError ? h('p.err', `⚠️ ${store.status.lastError}`) : null);
+      err ? h('p.err', `⚠️ ${err}`) : null,
+      err ? h('button.btn', { onclick: () => store.resetConnection() }, '⚙️ Kapcsolat beállítása') : null);
   } else {
     if (r.name === 'picker') {
       const kids = activeChildren(store.data);

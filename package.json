@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "vite --host",
     "build": "vite build",
-    "preview": "vite preview --host"
+    "preview": "vite preview --host",
+    "test": "node apps-script/mock.mjs test",
+    "mock:gas": "node apps-script/mock.mjs serve"
   },
   "devDependencies": {
     "vite": "^7.1.0"

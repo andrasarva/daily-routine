@@ -44,7 +44,7 @@ export const store = {
     return {
       startHour: Number(b.nap_kezdete ?? 4) || 0,
       sfx: this.prefs.muted == null ? norm(b.hangeffektek || 'igen') !== 'nem' : !this.prefs.muted,
-      speechRate: Number(b.felolvasas_sebesseg) || 0.9,
+      speechRate: Number(String(b.felolvasas_sebesseg ?? '').replace(',', '.')) || 0.9, // "0,9" is jó
     };
   },
 
