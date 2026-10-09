@@ -42,13 +42,27 @@ A „Bárki” beállítás azért kell, hogy a tablet bejelentkezés nélkül e
 
 ### 3. Tablet
 
-1. Nyisd meg az appot Chrome-ban, és válaszd a **Google táblázat** lehetőséget.
+1. Nyisd meg az appot Chrome-ban (`https://andrasarva.github.io/daily-routine/`, lásd lent), és válaszd a **Google táblázat** lehetőséget.
 2. Add meg a Web App URL-jét és a családi kódot, majd nyomd meg a **Kapcsolódás** gombot.
 3. Chrome menü (⋮) → **Hozzáadás a kezdőképernyőhöz / Alkalmazás telepítése**. Így teljes képernyőn fut.
 
 ### Ha módosul a `Code.gs`
 
 Az Apps Scriptben: **Telepítés → Telepítések kezelése** → ✏️ → **Verzió: Új verzió** → **Telepítés**. Így az URL nem változik. Ha *új* telepítést hozol létre, új URL-t kapsz, és azt a tableten is újra meg kell adni.
+
+## Az app kirakása
+
+### GitHub Pages (ajánlott)
+
+Minden `main` ágra küldött push után a [GitHub Actions](.github/workflows/deploy.yml) lefuttatja a teszteket, lefordítja és kirakja az appot ide: `https://andrasarva.github.io/daily-routine/`. HTTPS-en fut, ezért a tableten telepíthető, és offline is működik.
+
+Egyszeri beállítás: a repóban **Settings → Pages → Build and deployment → Source: GitHub Actions**. Ingyenes GitHub-fióknál a Pages csak publikus repóval működik. A repóban nincs titkos adat: az Apps Script URL-je és a családi kód csak a tableten tárolódik.
+
+A telepítés állapota a repó **Actions** fülén látszik, kézzel is indítható onnan (**Run workflow**).
+
+### Helyi IIS
+
+`C:\inetpub\wwwroot\DailyRoutine` alá a Claude Code `/deploy` skillje rakja ki ([.claude/skills/deploy](.claude/skills/deploy/SKILL.md)). Sima `http://`-n, más gépről (pl. a tabletről) megnyitva a Chrome nem engedi a telepítést és az offline módot.
 
 ## A táblázat felépítése
 
